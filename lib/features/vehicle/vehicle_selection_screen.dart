@@ -68,7 +68,7 @@ class _VehicleSelectionScreenState extends State<VehicleSelectionScreen> {
                     const SizedBox(height: 16),
                     _buildVehicleOption(
                       title: "E-Bike",
-                      description: "Perfect for quick city deliveries",
+                      description: "Perfect for quick city deliveriesS",
                       icon: Icons.electric_moped,
                       earnings: "1,500 - 3,000",
                       isPopular: false,
