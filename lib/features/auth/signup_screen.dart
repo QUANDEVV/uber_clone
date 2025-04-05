@@ -416,8 +416,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
               ElevatedButton(
                 onPressed: _emailVerified && _phoneVerified
                     ? () {
-                        // Navigate to vehicle selection
-                        Get.off(() => const VehicleSelectionScreen());
+                        // Navigate to vehicle selection to start onboarding
+                        Get.to(() => const VehicleSelectionScreen());
                       }
                     : null,
                 style: ElevatedButton.styleFrom(

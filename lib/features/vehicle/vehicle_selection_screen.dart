@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:uber_clone/core/theme/app_colors.dart';
 import 'package:uber_clone/features/home/home_screen.dart';
+import 'package:uber_clone/features/onboarding/vehicle_details_screen.dart';
+
 
 class VehicleSelectionScreen extends StatefulWidget {
   const VehicleSelectionScreen({super.key});
@@ -108,7 +110,7 @@ class _VehicleSelectionScreenState extends State<VehicleSelectionScreen> {
                   onPressed: _selectedVehicle == null
                       ? null
                       : () {
-                          Get.off(() => const HomeScreen());
+                          Get.to(() => const VehicleDetailsScreen());
                         },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: AppColors.primary,
