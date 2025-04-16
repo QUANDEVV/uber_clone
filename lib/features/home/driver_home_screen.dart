@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:uber_clone/core/theme/app_colors.dart';
+import 'package:uber_clone/core/theme/app_text_styles.dart';
 
 class DriverHomeScreen extends StatelessWidget {
   const DriverHomeScreen({super.key});
@@ -13,29 +14,44 @@ class DriverHomeScreen extends StatelessWidget {
           children: [
             // Header
             Container(
-              padding: const EdgeInsets.all(24),
+              padding: const EdgeInsets.fromLTRB(24, 24, 24, 16),
               decoration: BoxDecoration(
                 color: Colors.white,
                 boxShadow: [
                   BoxShadow(
-                    color: Colors.black.withOpacity(0.05),
+                    color: Colors.black.withOpacity(0.03),
                     offset: Offset(0, 2),
-                    blurRadius: 16,
+                    blurRadius: 8,
                   ),
                 ],
               ),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(
-                    "Welcome Henry",
-                    style: TextStyle(
-                      fontSize: 28,
-                      fontWeight: FontWeight.w700,
-                      color: Colors.black87,
-                    ),
+                  // User greeting with profile icon
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        "Welcome Henry",
+                        style: TextStyle(
+                          fontSize: 24,
+                          fontWeight: FontWeight.w600,
+                          color: Colors.black87,
+                        ),
+                      ),
+                      CircleAvatar(
+                        radius: 20,
+                        backgroundColor: Colors.grey[200],
+                        child: Icon(
+                          Icons.person,
+                          color: Colors.black54,
+                        ),
+                      ),
+                    ],
                   ),
                   const SizedBox(height: 24),
+                  // Stats cards
                   Row(
                     children: [
                       Expanded(
@@ -49,32 +65,38 @@ class DriverHomeScreen extends StatelessWidget {
                       Expanded(
                         child: _buildStatCard(
                           title: "Today's Earnings",
-                          value: "KES 12,000",
+                          value: "KES 12K",
                           icon: Icons.payments,
                         ),
                       ),
                     ],
                   ),
                   const SizedBox(height: 24),
+                  // Go Online button
                   ElevatedButton(
                     onPressed: () {},
                     style: ElevatedButton.styleFrom(
                       backgroundColor: AppColors.primary,
                       foregroundColor: Colors.white,
-                      padding: const EdgeInsets.symmetric(vertical: 16),
+                      minimumSize: Size(double.infinity, 52),
                       shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(8),
+                        borderRadius: BorderRadius.circular(12),
                       ),
                       elevation: 0,
                     ),
-                    child: Center(
-                      child: Text(
-                        "Go Online",
-                        style: TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.w600,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Icon(Icons.power_settings_new, size: 18),
+                        const SizedBox(width: 8),
+                        Text(
+                          "Go Online",
+                          style: TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.w600,
+                          ),
                         ),
-                      ),
+                      ],
                     ),
                   ),
                 ],
@@ -90,15 +112,16 @@ class DriverHomeScreen extends StatelessWidget {
                     TabBar(
                       tabs: [
                         Tab(text: "Ride Requests"),
-                        Tab(text: "Ride History"),
+                        Tab(text: "History"),
                       ],
                       labelColor: AppColors.primary,
                       unselectedLabelColor: Colors.black54,
                       labelStyle: TextStyle(
-                        fontSize: 16,
+                        fontSize: 15,
                         fontWeight: FontWeight.w600,
                       ),
                       indicatorColor: AppColors.primary,
+                      indicatorWeight: 3,
                     ),
                     Expanded(
                       child: TabBarView(
@@ -126,6 +149,8 @@ class DriverHomeScreen extends StatelessWidget {
         currentIndex: 0,
         selectedItemColor: AppColors.primary,
         unselectedItemColor: Colors.black54,
+        backgroundColor: Colors.white,
+        elevation: 8,
         showUnselectedLabels: true,
         items: [
           BottomNavigationBarItem(
@@ -160,26 +185,30 @@ class DriverHomeScreen extends StatelessWidget {
         color: Colors.grey[50],
         borderRadius: BorderRadius.circular(12),
         border: Border.all(
-          color: Colors.black12,
+          color: Colors.black.withOpacity(0.05),
           width: 1,
         ),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
+          // Fix for the overflow in Row
           Row(
             children: [
               Icon(
                 icon,
-                size: 20,
+                size: 16,
                 color: AppColors.primary,
               ),
-              const SizedBox(width: 8),
-              Text(
-                title,
-                style: TextStyle(
-                  fontSize: 14,
-                  color: Colors.black54,
+              const SizedBox(width: 4),
+              Flexible(
+                child: Text(
+                  title,
+                  overflow: TextOverflow.ellipsis,
+                  style: TextStyle(
+                    fontSize: 13,
+                    color: Colors.black54,
+                  ),
                 ),
               ),
             ],
@@ -188,7 +217,7 @@ class DriverHomeScreen extends StatelessWidget {
           Text(
             value,
             style: TextStyle(
-              fontSize: 24,
+              fontSize: 22,
               fontWeight: FontWeight.w600,
               color: Colors.black87,
             ),
@@ -205,10 +234,17 @@ class DriverHomeScreen extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Icon(
-              Icons.hourglass_empty,
-              size: 64,
-              color: Colors.black12,
+            Container(
+              padding: const EdgeInsets.all(16),
+              decoration: BoxDecoration(
+                color: Colors.grey[100],
+                shape: BoxShape.circle,
+              ),
+              child: Icon(
+                Icons.hourglass_empty,
+                size: 40,
+                color: Colors.black45,
+              ),
             ),
             const SizedBox(height: 16),
             Text(
