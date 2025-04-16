@@ -404,68 +404,64 @@ class _DocumentUploadScreenState extends State<DocumentUploadScreen> {
                 style: BorderStyle.solid,
               ),
             ),
-            child: Stack(
-              alignment: Alignment.center,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                // Document graphic
-                if (isProfile)
-                  Container(
-                    width: 100,
-                    height: 100,
-                    decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      color: Colors.grey[200],
-                      border: Border.all(
-                        color: Colors.grey.withOpacity(0.5),
-                        width: 1,
+                // Document graphic at the top
+                isProfile
+                  ? Container(
+                      width: 100,
+                      height: 100,
+                      margin: EdgeInsets.only(bottom: 16),
+                      decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        color: Colors.grey[200],
+                        border: Border.all(
+                          color: Colors.grey.withOpacity(0.5),
+                          width: 1,
+                        ),
+                      ),
+                      child: Icon(
+                        Icons.person,
+                        size: 60,
+                        color: Colors.grey[400],
+                      ),
+                    )
+                  : Container(
+                      width: 120,
+                      height: 80,
+                      margin: EdgeInsets.only(bottom: 16),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(8),
+                        color: Colors.grey[200],
+                        border: Border.all(
+                          color: Colors.grey.withOpacity(0.5),
+                          width: 1,
+                        ),
+                      ),
+                      child: Icon(
+                        Icons.insert_drive_file,
+                        size: 40,
+                        color: Colors.grey[400],
                       ),
                     ),
-                    child: Icon(
-                      Icons.person,
-                      size: 60,
-                      color: Colors.grey[400],
-                    ),
-                  )
-                else
-                  Container(
-                    width: 120,
-                    height: 80,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(8),
-                      color: Colors.grey[200],
-                      border: Border.all(
-                        color: Colors.grey.withOpacity(0.5),
-                        width: 1,
-                      ),
-                    ),
-                    child: Icon(
-                      Icons.insert_drive_file,
-                      size: 40,
-                      color: Colors.grey[400],
-                    ),
-                  ),
                 
-                // Upload buttons positioned at bottom
-                Positioned(
-                  bottom: 20,
-                  left: 0,
-                  right: 0,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      _buildUploadButton(
-                        icon: Icons.camera_alt,
-                        label: "Camera",
-                        onTap: () {},
-                      ),
-                      const SizedBox(width: 16),
-                      _buildUploadButton(
-                        icon: Icons.photo_library,
-                        label: "Gallery",
-                        onTap: () {},
-                      ),
-                    ],
-                  ),
+                // Buttons at the bottom
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    _buildUploadButton(
+                      icon: Icons.camera_alt,
+                      label: "Camera",
+                      onTap: () {},
+                    ),
+                    const SizedBox(width: 16),
+                    _buildUploadButton(
+                      icon: Icons.photo_library,
+                      label: "Gallery",
+                      onTap: () {},
+                    ),
+                  ],
                 ),
               ],
             ),
@@ -504,6 +500,7 @@ class _DocumentUploadScreenState extends State<DocumentUploadScreen> {
         ),
         child: Row(
           mainAxisSize: MainAxisSize.min,
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Icon(
               icon,
